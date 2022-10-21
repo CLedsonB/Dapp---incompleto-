@@ -1,0 +1,72 @@
+#<EditButton@Button>:
+#    background_color: ('#22FF22')
+#    font_size: '18sp'
+#    size_hint: 1, 0.25
+ 
+#<EditLabel@Label>:
+#    color: ('#0F0F0F')
+#    font_size: '22sp'
+#    size_hint: 1, 0.20
+#    markup: True
+#        
+BoxLayout:
+    orientation: 'vertical'
+    spacing: 10
+    padding: 10
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        color: ('#0F0F0F')
+        font_size: '22sp'
+        size_hint: 1, 0.20
+        markup: True
+        text: '[b]Dimensionamento[/b]'
+    
+    Button:
+        background_color: ('#22FF22')
+        font_size: '18sp'
+        size_hint: 1, 0.25        
+        text: 'Condutor'
+                    
+    Button:
+        background_color: ('#22FF22')
+        font_size: '18sp'
+        size_hint: 1, 0.25    
+        text: 'Contator'
+                    
+    Button:
+        background_color: ('#22FF22')
+        font_size: '18sp'
+        size_hint: 1, 0.25    
+        text: 'Fusível'
+                
+    Button:
+        background_color: ('#22FF22')
+        font_size: '18sp'
+        size_hint: 1, 0.25     
+        text: 'Relé Térmico'
+            
+    Label:
+        color: ('#0F0F0F')
+        font_size: '22sp'
+        size_hint: 1, 0.20
+        markup: True
+        text: '[b]Extra[/b]'
+                    
+    Button:
+        background_color: ('#22FF22')
+        font_size: '18sp'
+        size_hint: 1, 0.25    
+        text: 'Corrente de Partida'
+                
+    Label:
+        color: ('#0F0F0F')
+        font_size: '22sp'
+        size_hint: 1, 0.20
+        markup: True
+        text: '   '
+        size_hint: 1, 0.01

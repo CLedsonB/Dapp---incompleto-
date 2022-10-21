@@ -1,0 +1,8 @@
+#<Wall>:
+#    BoxLayout:
+#        canvas.before:
+#            Color:
+#                rgba: 0.95, 0.95, 0.95, 1
+#            Rectangle:
+#                pos: self.pos
+#                size: self.size

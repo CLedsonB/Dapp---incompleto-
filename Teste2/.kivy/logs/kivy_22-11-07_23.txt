@@ -1,0 +1,37 @@
+[INFO   ] Logger: Record log in /storage/emulated/0/Coding/Dapp/Teste2/.kivy/logs/kivy_22-11-07_23.txt
+[INFO   ] Kivy: v2.0.0
+[INFO   ] Kivy: Installed at "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/__init__.py"
+[INFO   ] Python: v3.9.7 (default, Oct  6 2021, 01:34:26) 
+[GCC 11.1.0]
+[INFO   ] Python: Interpreter at "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/bin/python3"
+[INFO   ] Logger: Purge log fired. Analysing...
+[INFO   ] Logger: Purge 35 log files
+[INFO   ] Logger: Purge finished!
+[INFO   ] Factory: 186 symbols loaded
+[INFO   ] Image: Providers: img_tex, img_dds, img_sdl2 (img_pil, img_ffpyplayer ignored)
+[WARNING] stderr: Traceback (most recent call last):
+[WARNING] stderr:   File "/storage/emulated/0/Coding/Dapp/Teste2/Main.py", line 6, in <module>
+[WARNING] stderr:     inicio = Builder.load_file('Main.kv')
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/builder.py", line 306, in load_file
+[WARNING] stderr:     return self.load_string(data, **kwargs)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/builder.py", line 373, in load_string
+[WARNING] stderr:     parser = Parser(content=string, filename=fn)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/parser.py", line 402, in __init__
+[WARNING] stderr:     self.parse(content)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/parser.py", line 511, in parse
+[WARNING] stderr:     objects, remaining_lines = self.parse_level(0, lines)
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/parser.py", line 614, in parse_level
+[WARNING] stderr:     _objects, _lines = self.parse_level(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/parser.py", line 614, in parse_level
+[WARNING] stderr:     _objects, _lines = self.parse_level(
+[WARNING] stderr:   File "/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.9/site-packages/kivy/lang/parser.py", line 566, in parse_level
+[WARNING] stderr:     raise ParserException(self, ln,
+[WARNING] stderr: kivy.lang.parser.ParserException: Parser: File "/storage/emulated/0/Coding/Dapp/Teste2/Main.kv", line 224:
+[WARNING] stderr: ...
+[WARNING] stderr:     222:            id: Rmc
+[WARNING] stderr:     223:        Label:
+[WARNING] stderr: >>  224:               text: ' '
+[WARNING] stderr:     225:               size_hint: 1,  0.3
+[WARNING] stderr:     226:                   
+[WARNING] stderr: ...
+[WARNING] stderr: Invalid indentation, must be a multiple of 4 spaces

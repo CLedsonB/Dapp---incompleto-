@@ -1,0 +1,691 @@
+#Costantes Tela inicial
+
+<InicioButton@Button>:
+    background_color: ('#007FFF')
+    font_size: '18sp'
+    size_hint: 1, 0.25
+ 
+<InicioLabel@Label>:
+    color: ('#0F0F0F')
+    font_size: '20sp'
+    size_hint: 1, 0.20
+    markup: True
+    
+<Resposta@Label>:
+    canvas.before:
+        Color:
+            rgba: 0.4, 0.4, 0.9, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    text: ' '
+    color:  ('#222222')
+    font_size: '20sp'
+    size_hint: 0.7, 0.2
+    margin: 5, 5
+
+<Espaco@Label>:
+    text: ' '
+    size_hint_x: 1
+
+# Constantes Tela corrente de partida
+
+<CorrenteInput@TextInput>:
+    multiline: False
+    write_tab: False
+    input_filter: 'float'
+    font_size: 30
+    size_hint: None, None
+    width: 150
+    heigth: 100
+    
+<CorrenteLabel@Label>:
+    color: ('#0F0F0F')
+    font_size: '18sp'
+
+<UnidadesLabel@Label>:
+    color: ('#0F0F0F')
+    font_size: '16sp'
+    
+<CorButton@Button>:
+    background_color: ('#007FFF')
+    font_size: '18sp'
+    
+#Constante Sistema de fases
+
+<SistemaDeFases@BoxLayout>:
+    orientation: 'horizontal'
+    spacing: 5
+    padding: 5
+    UnidadesLabel:
+        text: 'Quantidade\nde Fases:'
+        size_hint: 0.5, 0.3
+    CheckBox:
+        group: 'Sistema de fases'
+        color: ('#007FFF')
+        active: False
+        size_hint: None, 0.3
+        on_active: root.ids.fases.text = '(0_0)'
+#        on_active: root.radioOpcao(self, self.active, 2)
+    UnidadesLabel:
+        id: fase
+        text: 'F / FF'
+        size_hint: None, 0.3
+    CheckBox:
+        group: 'Sistema de fases'
+        color: ('#007FFF')
+        active: False
+        size_hint: None, 0.3
+        on_active: root.ids.fase.text = 'Em\nConstrução..'
+        #on_active: root.radioOpcao(self, self.active, 1.732050)
+    UnidadesLabel:
+        id: fases
+        text: 'FFF'
+        size_hint: None, 0.3
+          
+# Fundo Branco e espacamento do App
+
+<EditBoxLayout@BoxLayout>:
+    orientation: 'vertical'
+    spacing: 10
+    padding: 10
+    canvas.before:
+        Color:
+            rgba: 0.60, 0.60, 0.6,  1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<EditGridLayout@GridLayout>:
+    spacing: 0
+    padding: 20
+    cols: 1
+    canvas.before:
+        Color:
+            rgba: 0.60, 0.60, 0.6,  1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+#Layout Telas
+
+<jInicio>:     
+    EditBoxLayout:          
+        InicioLabel:
+            text: '[b]Dimensionamento[/b]'
+        
+        InicioButton:        
+            text: 'Condutor'
+            on_press: root.manager.current = 'jCondutor'                        
+
+        InicioButton:
+            text: 'Contator'
+            on_press: root.manager.current = 'jContator'
+                        
+        InicioButton:
+            text: 'Fusível'
+            on_press: root.manager.current = 'jFusivel'
+                    
+        InicioButton:
+            text: 'Relé Térmico'
+            on_press: root.manager.current = 'jRele'
+                
+        InicioLabel:
+            text: '[b]Extra[/b]'
+                        
+        InicioButton:
+            text: 'Corrente Nominal do motor'
+            on_press: root.manager.current = 'jCorrenteN'
+            
+        InicioButton:
+            text: 'Corrente de Partida do motor'
+            on_press: root.manager.current = 'jCorrenteP'
+             
+        Espaco:
+            size_hint_y: 0.01
+                     
+#Tela condutor 
+
+<jCondutor>:       
+    EditBoxLayout:
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.2
+            
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Dimensionamento do Condutor[/b]'
+        Espaco:
+            size_hint_y: 0.05
+            
+        InicioButton:        
+            text: 'Método da Corrente'
+            on_press: root.manager.current = 'jcCorrente'
+        InicioButton:
+            text: 'Método da Queda de Tensão'
+            on_press: root.manager.current = 'jcQueda'
+        InicioButton:
+            text: 'Método Ampere x Metro'
+            on_press: root.manager.current = 'jcAxm'
+        Espaco:
+            
+#Metodo da corrente
+
+<jcCorrente>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jCondutor'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Metodo da Corrente[/b]'
+            Espaco:
+                size_hint_y: 0.5
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+                id: mcA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Fator de\nSeviço: '
+            CorrenteInput:
+                id: mcFs
+            CorrenteLabel:
+                text: '[ 1 - 1.5 ]'
+                size_hint: 0.3, None          
+        Espaco:
+            size_hint_y: 0.3
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.Ccondutor()
+        Espaco:
+            size_hint_y: 0.3
+        Resposta:
+            id: Rmc
+        Espaco:
+            size_hint_y: 0.3
+                   
+# Metodo da queda de tensão 
+
+<jcQueda>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint: None, None
+                width: 100
+                height: 120
+                on_press: root.manager.current = 'jCondutor'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Método da queda de tensão [/b]'
+            Espaco:
+                size_hint_y: 0.2
+                
+            UnidadesLabel:
+                text: 'Resistividade\ndo material: '
+            CorrenteInput:
+            CorrenteLabel:
+                id: mqp
+                text: 'р'
+                size_hint: None, 0.6
+                
+            UnidadesLabel:
+                text: 'Corrente de\ntrabalho: '
+            CorrenteInput:
+                id: mqA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: None, 0.6
+                
+            UnidadesLabel:
+                text: 'Fator\nde potencia: '
+            CorrenteInput:
+                id: mqfi
+            CorrenteLabel:
+                text: 'ф'
+                size_hint: None, 0.6
+                
+            UnidadesLabel:
+                text: 'Comprimento\ndo Condutor: '
+            CorrenteInput:
+                id: mql
+            CorrenteLabel:
+                text: 'm'
+                size_hint: None, 0.6
+
+            UnidadesLabel:
+                text: 'Queda de\nTensão: '
+            CorrenteInput:
+                id: mqqv
+            CorrenteLabel:
+                text: '%'
+                size_hint: None, 0.6
+                
+            UnidadesLabel:
+                text: 'Tensão de\nTrabalho:'
+            CorrenteInput:
+                id: mqv
+            CorrenteLabel:
+                text: 'V'
+                size_hint: None, 0.6
+       
+        SistemaDeFases:                
+        Espaco:
+            size_hint_y: 0.35
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.Qcondutor()
+        Espaco:
+            size_hint_y: 0.3
+        Resposta:
+            id: Rmq
+        Espaco:
+            size_hint_y: 0.3
+                
+# Tela metodo Ampere x Metro
+
+<jcAxm>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jCondutor'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Método Ampere x Metro[/b]'
+            Espaco:
+                size_hint_y: 0.3
+                
+            UnidadesLabel:
+                text: 'Corrente de\nPartida do motor: '
+            CorrenteInput:
+                id: mamA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Comprimento do\nCondutor: '
+            CorrenteInput:
+                id: mamM
+            CorrenteLabel:
+                text: 'm'
+                size_hint: 0.3, None          
+            Espaco:
+                size_hint_y: 0.3
+        CorButton:
+            size_hint: 1, 0.2
+            width: 200
+            height: 100
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.AMcondutor()
+        Espaco:
+            size_hint_y: 0.1
+        Resposta:
+            id: Ram
+        Espaco:
+            size_hint_y: 0.3
+            
+#Tela Calculos de Contator
+
+<jContator>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Dimensionamento do Contator[/b]'
+            Espaco:
+                size_hint_y: 0.3
+            
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+                id: cA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Fator de\nSegurança: '
+            CorrenteInput:
+                id: cFs
+            CorrenteLabel:
+                text: '[ 1 - 1.5 ]'
+                size_hint: 0.3, None          
+        Espaco:
+            size_hint_y: 0.6
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.calcContator()
+        Espaco:
+            size_hint_y: 0.1
+        Resposta:
+            id: Rc
+        Espaco:
+            size_hint_y: 0.3
+            
+#Tela Calculos de fusivel
+
+<jFusivel>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Dimensionamento de Fusível[/b]'
+            Espaco:
+                size_hint_y: 0.3
+                
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+                id: fA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Fator de\nSegurança: '
+            CorrenteInput:
+                id: fFs
+            CorrenteLabel:
+                text: '[ 1 - 1.5 ]'
+                size_hint: 0.3, None          
+        Espaco:
+            size_hint_y: 0.3
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.calcFusivel()
+        Espaco:
+            size_hint_y: 0.1
+        Resposta:
+            id: Rf
+        Espaco:
+            size_hint_y: 0.3
+            
+# Calculo Rele
+
+<jRele>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Dimensionamento do Relé[/b]'
+            Espaco:
+                size_hint_y: 0.3
+                
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+                id: rA
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Fator de\nSegurança: '
+            CorrenteInput:
+                id: rFs
+            CorrenteLabel:
+                text: '[ 1 - 1.5 ]'
+                size_hint: 0.3, None          
+        Espaco:
+            size_hint_y: 0.6
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+            on_release: root.calcRele()
+        Espaco:
+            size_hint_y: 0.1
+        Resposta:
+            id: Rrl
+        Espaco:
+            size_hint_y: 0.3
+                                      
+#Tela Corrente Nominal
+
+<jCorrenteN>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint: None, None
+                width: 100
+                height: 120
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Cálculo da corrente\nNominal[/b]'
+            Label:
+                text: ' '
+            UnidadesLabel:
+                text: 'Potencia\ndo Motor: '
+            CorrenteInput:
+                id: cnP
+            CorrenteLabel:
+                text: 'Cv'
+                size_hint: None, None
+                
+            UnidadesLabel:
+                text: 'Tensão\nde trabalho: '
+            CorrenteInput:
+                id: cnT
+            CorrenteLabel:
+                text: 'V'
+                size_hint: None, None
+                
+            UnidadesLabel:
+                text: 'Fator\nde potencia: '
+            CorrenteInput:
+                id: cnFi
+            CorrenteLabel:
+                text: 'ф'
+                size_hint: None, None
+                
+            UnidadesLabel:
+                text: 'Rendimento\ndo Motor: '
+            CorrenteInput:
+                id: cnR
+            CorrenteLabel:
+                text: '[0 - 1]'
+                size_hint: None, None
+                
+        SistemaDeFases:        
+        Espaco:
+            size_hint_y: 0.8
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+        Espaco:
+            size_hint_y: 0.6
+        Resposta:
+            id: Rin
+        Espaco:
+            size_hint_y: 0.3
+
+#Tela Corrente de Partida
+
+<jCorrenteP>:
+    EditBoxLayout:
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.2
+            
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 100
+                on_press: root.manager.current = 'jInicio'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Cálculo de Corrente de Partida[/b]'
+        Espaco:
+            size_hint_y: 0.08
+        InicioButton:        
+            text: 'IP / IN'
+            on_press: root.manager.current = 'IPin'
+        InicioButton:
+            text: 'Fator de Serviço'
+            on_press: root.manager.current = 'IPfs'
+        Espaco:
+            size_hint_y: 0.5
+
+#Tela IP / IN 
+     
+<IPin>:
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jCorrenteP'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Corrente de partida com IP / IN[/b]'
+            Espaco:
+                size_hint_y: 0.3
+                
+            UnidadesLabel:
+                text: 'IP / IN: '
+            CorrenteInput:
+                id: ipinC
+            CorrenteLabel:
+                text: 'Constante\ndo motor'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+                id: ipinN
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None          
+            Espaco:
+                size_hint_y: 0.6
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+        Espaco:
+            size_hint_y: 0.2
+        Resposta:
+            id: Ripin
+        Espaco:
+            size_hint_y: 0.1
+#Tela IP com FS
+                                
+<IPfs>:        
+    EditGridLayout:
+        GridLayout:
+            cols: 3
+     
+            CorButton:
+                text: '<--'
+                pos: 0, 0
+                size_hint_x: None
+                width: 100
+                height: 40
+                on_press: root.manager.current = 'jCorrenteP'
+            CorrenteLabel:
+                markup: True
+                text: '[b]Corrente de partida com FS[/b]'
+            Label:
+                text: ' '
+                size_hint: 1, 0.3
+                
+            UnidadesLabel:
+                text: 'Corrente Nominal\ndo Motor: '
+            CorrenteInput:
+            CorrenteLabel:
+                text: 'A'
+                size_hint: 0.3, None
+                
+            UnidadesLabel:
+                text: 'Fator de\nSeviço: '
+            CorrenteInput:
+            CorrenteLabel:
+                text: '[ 1 - 1.5 ]'
+                size_hint: 0.3, None          
+        Label:
+            text: ' '
+            size_hint: 1, 0.6
+        CorButton:
+            size_hint: 1, 0.3
+            spacing: 10
+            text: 'Calcular'
+        Label:
+            text: ' '
+            size_hint: 1, 0.3       

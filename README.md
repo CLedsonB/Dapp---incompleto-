@@ -4,12 +4,20 @@ Aplicativo multi-plataforma desenvolvido com a biblioteca Kivy da linguagem Pyth
 
 ## gerar apk do arquivo .kv
 
-1 - instalar vm (maquiva virtual) [//link](https://www.virtualbox.org/wiki/Downloads)
+* Instalação e execução
 
-2 - instalar o buildozer [//link](https://github.com/kivy/buildozer)
+1 - Instalar VM (maquiva virtual) [//link](https://www.virtualbox.org/wiki/Downloads)
 
-3 - abrir o software VM e importar para lá o .zip buildozer
+2 - Instalar o buildozer [//link](https://github.com/kivy/buildozer)
 
-4 - criar pasta na maquina virtual VM para compartilhar arquivos entre as máquinas
+3 - Abrir o software VM e importar para lá o .zip buildozer
 
-5 - inicializar maquina virtual (VM) e usar a senha "kivy" ao iniciar
+4 - Criar pasta no software maquina virtual VM para compartilhar arquivos entre as máquinas
+
+5 - Inicializar maquina virtual (VM) e usar a senha "kivy" ao iniciar
+
+6 - Ir na sua maquina nativa e mover a pasta do projeto para pasta compartilhada
+
+7 - Abrir terminal na pasta do projeto
+
+8 - executar `buildozer init`
